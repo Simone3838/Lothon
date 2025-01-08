@@ -1,6 +1,15 @@
 # Lothon
 demo os in c
 
+# features:
+Basic bootloader
+Shell
+
+# TODO
+[] more command such as ls,mkdir,etc.
+[] gui
+[] boot sequence
+
 # how to compile it?
 ```
 nasm -f bin boot.asm -o boot.bin
