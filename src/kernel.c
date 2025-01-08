@@ -20,6 +20,8 @@ void print_prompt(void);
 void handle_command(const char* command);
 void help_command(void);
 void cls_command(void);
+char getchar(void);  // Declare getchar function
+uint8_t inb(uint16_t port);  // Declare inb function
 
 // Global variables
 uint16_t* video_memory = (uint16_t*) VGA_ADDRESS;
