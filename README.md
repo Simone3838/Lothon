@@ -2,15 +2,16 @@
 demo os in c
 
 # features:
-Basic bootloader
-Shell
+[x] Basic bootloader
+
+[x] Shell
 
 # TODO
-[] more command such as ls,mkdir,etc.
+[ ] more command such as ls,mkdir,etc.
 
-[] gui
+[ ] gui
 
-[] boot sequence
+[ ] boot sequence
 
 # how to compile it?
 ```
