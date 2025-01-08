@@ -7,6 +7,10 @@
 #define VGA_HEIGHT 25
 #define VGA_ADDRESS 0xB8000
 
+// Keyboard I/O ports
+#define KEYBOARD_DATA_PORT 0x60
+#define KEYBOARD_STATUS_PORT 0x64
+
 // Function prototypes
 void kernel_main(void);
 void clear_screen(void);
@@ -34,7 +38,7 @@ void kernel_main() {
     int command_index = 0;
 
     while (true) {
-        char c = getchar();  // Placeholder for a function to get character input
+        char c = getchar();  // Read character input
 
         if (c == '\n') {
             command[command_index] = '\0';
@@ -115,10 +119,25 @@ void cls_command() {
     clear_screen();
 }
 
-// Placeholder for a function to get character input
+// Read a byte from the keyboard data port
 char getchar() {
-    // This function should be implemented according to your input hardware
-    return '\0';  // Placeholder return value
+    char c = 0;
+
+    // Wait for a key press
+    while (c == 0) {
+        if (inb(KEYBOARD_STATUS_PORT) & 0x01) {
+            c = inb(KEYBOARD_DATA_PORT);
+        }
+    }
+
+    return c;
+}
+
+// Read a byte from an I/O port
+uint8_t inb(uint16_t port) {
+    uint8_t result;
+    __asm__("inb %1, %0" : "=a"(result) : "Nd"(port));
+    return result;
 }
 
 // Placeholder for a simple string comparison function
